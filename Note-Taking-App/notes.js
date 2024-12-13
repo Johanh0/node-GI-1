@@ -72,10 +72,24 @@ function readNotes(title) {
   }
 }
 
+function editNote(title, newBody) {
+  const notes = loadNotes();
+  const noteFound = notes.find((note) =>
+    note.title === title ? (note.body = newBody) : false
+  );
+
+  if (noteFound) {
+    saveNotes(notes);
+  } else {
+    return console.log(chalk.red.inverse(" Note not found! "));
+  }
+}
+
 module.exports = {
   getNotes,
   addNote,
   removeNotes,
   listNotes,
   readNotes,
+  editNote,
 };
